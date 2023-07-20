@@ -8,6 +8,7 @@ import {
   View,
   ImageBackground,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -18,7 +19,7 @@ import Footer from "../../../components/Footer";
 const Login = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
-      <ImageBackground source={welcome} style={styles.bgImg}>
+      <ImageBackground source={welcome} style={styles.bgImg}> 
         <View style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", height: "100%" }}>
           <View style={styles.loginHeader}>
             <Image
@@ -64,6 +65,11 @@ const Login = ({ navigation }) => {
           onPress={() => navigation.navigate("ForgotPassword")}
         />
         <Text style={styles.formbtn}>Login</Text>
+        <TouchableOpacity onPress={()=>navigation.navigate("ForgotPassword")}>
+        <Text style={styles.forgetText}>Forget Password</Text>
+        </TouchableOpacity>
+        
+        
       </View>
       <View style={styles.bodyPoints}>
         <View style={styles.bodyPoint}>
@@ -180,6 +186,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#177409",
     color: "#fff",
     fontWeight: 900,
+  },
+  forgetText:{
+    paddingLeft:"65%",
+       paddingTop:20,
+       color:'green',
+       alignSelf:'flex-end'
   },
   headerBody: {
     alignItems: "center",
