@@ -1,15 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import mariaddalogo from "../../../assets/images/mariaddalogo.png";
 const MainPage = () => {
   return (
     <View style={styles.container}>
-      <Text>MainPage</Text>
+      <View style={styles.header}>
+        <Image sourcer={mariaddalogo} style={styles.logo} />
+      </View>
     </View>
   );
-}
+};
 
-export default MainPage
+export default MainPage;
 
 const styles = StyleSheet.create({
   container: {
