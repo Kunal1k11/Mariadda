@@ -17,8 +17,8 @@ export default function App() {
           animation: "slide_from_right",
         }}
       >
-        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="MainPage" component={MainPage} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen
           name="Signup"
