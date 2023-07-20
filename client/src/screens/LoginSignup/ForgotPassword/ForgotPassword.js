@@ -45,7 +45,7 @@ const ForgotPassword = ({ navigation }) => {
         />
        
       </View>
-      <Text>{selectedGender}</Text>
+      
       <View style={styles.credentialBox}>
         <Text style={styles.signupText}>Forget Password</Text>
         <TextInput
