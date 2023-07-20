@@ -4,7 +4,7 @@ import React from 'react'
 const ForgotPassword = () => {
   return (
     <View>
-      <Text>ForgotPassword inital commit</Text>
+      <Text>ForgotPassword</Text>
     </View>
   )
 }
