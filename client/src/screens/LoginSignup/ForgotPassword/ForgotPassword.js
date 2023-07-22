@@ -65,7 +65,7 @@ const ForgotPassword = ({ navigation }) => {
       </View>
       <View style={styles.redirect}>
         <Text style={styles.redirectText}>
-          Have you recalled{"  "}
+          Have you recalled ?{"  "}
           <Text
             style={styles.link}
             onPress={() => navigation.navigate("Login")}

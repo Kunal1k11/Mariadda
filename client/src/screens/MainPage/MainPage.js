@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
-import mariaddalogo from "../../../assets/images/mariaddalogo.png";
-const MainPage = () => {
+import Header from "../../components/MainPage/Header";
+import Body from "../../components/MainPage/Body";
+
+const MainPage = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Image sourcer={mariaddalogo} style={styles.logo} />
-      </View>
+      <Header navigation={navigation} />
+      <Body navigation={navigation} />
     </View>
   );
 };
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
-    paddingVertical: 50,
+    paddingTop: 30,
+    backgroundColor: "#44f205",
   },
 });
