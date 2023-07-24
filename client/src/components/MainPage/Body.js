@@ -4,6 +4,7 @@ import { Entypo } from "@expo/vector-icons";
 import Stories from "./Stories";
 import Tags from "./Tags";
 import PostUpload from "../Post/PostUpload";
+import Posts from "../Post/Posts";
 
 const Body = () => {
   const getGreeting = () => {
@@ -40,6 +41,7 @@ const Body = () => {
       <Stories />
       <Tags />
       <PostUpload />
+      <Posts />
     </ScrollView>
   );
 };
