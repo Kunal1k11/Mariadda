@@ -8,7 +8,15 @@ import Signup from "./src/screens/LoginSignup/Signup/Signup";
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+const AuthStack = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Screen name="Login" component={Login} />
+    </NavigationContainer>
+  );
+};
+
+const RootNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -18,7 +26,6 @@ export default function App() {
         }}
       >
         <Stack.Screen name="MainPage" component={MainPage} />
-        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen
           name="Signup"
@@ -29,6 +36,11 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+  )
+}
+export default function App() {
+  return (
+    <RootNavigation />
   );
 }
 

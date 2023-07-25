@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
           </View>
         </View>
       </ImageBackground>
-      <View style={styles.credentialBox}>
+      <KeyboardAvoidingView behavior="padding" style={styles.credentialBox}>
         <TextInput
           placeholder="Username"
           style={styles.formInput}
@@ -68,9 +68,8 @@ const Login = ({ navigation }) => {
         <TouchableOpacity onPress={()=>navigation.navigate("ForgotPassword")}>
         <Text style={styles.forgetText}>Forget Password</Text>
         </TouchableOpacity>
-        
-        
-      </View>
+        <View style={{height: 100}} />
+      </KeyboardAvoidingView>
       <View style={styles.bodyPoints}>
         <View style={styles.bodyPoint}>
           <AntDesign
