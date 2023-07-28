@@ -13,11 +13,14 @@ import profile2 from "../../../assets/stories/profile2.jpg";
 import profile3 from "../../../assets/stories/profile3.png";
 import { AntDesign } from "@expo/vector-icons";
 
-const Stories = () => {
+const Stories = ({user}) => {
   return (
     <ScrollView horizontal={true} style={styles.stories}>
       <View style={styles.createStoryCard}>
-        <Image source={user} style={styles.createStoryImg} />
+        <Image
+          source={{ uri: user?.picture }}
+          style={styles.createStoryImg}
+        />
         <TouchableOpacity style={styles.plusStory}>
           <AntDesign name="plus" size={24} color="black" />
         </TouchableOpacity>

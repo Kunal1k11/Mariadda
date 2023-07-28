@@ -5,8 +5,10 @@ import Stories from "./Stories";
 import Tags from "./Tags";
 import PostUpload from "../Post/PostUpload";
 import Posts from "../Post/Posts";
+import { useSelector } from "react-redux";
 
 const Body = () => {
+  const userData = useSelector((state) => state.user.userData);
   const getGreeting = () => {
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
@@ -38,9 +40,9 @@ const Body = () => {
         </Text>
         <Entypo name="cross" size={24} color="#4e4f4f" />
       </View>
-      <Stories />
+      <Stories user={userData} />
       <Tags />
-      <PostUpload />
+      <PostUpload user={userData} />
       <Posts />
     </ScrollView>
   );

@@ -8,18 +8,47 @@ import {
   View,
   ImageBackground,
   ScrollView,
-  TouchableOpacity,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import welcome from "../../../../assets/images/welcome.jpg";
 import Footer from "../../../components/Footer";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../../../redux/actions/auth";
+import axios from "axios";
+import { APP_BACKEND_URL } from "@env";
 
 const Login = ({ navigation }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleLogin = async () => {
+    if (username == "" || password == "") {
+      alert("Please enter username and password");
+    } else {
+      setLoading(true);
+      try {
+        const response = await axios.post(`${APP_BACKEND_URL}/login`, {
+          username,
+          password,
+        });
+        // console.log(response.data)
+        setLoading(false);
+        dispatch(loginAction(response.data));
+        navigation.navigate("MainPage");
+      } catch (error) {
+        setLoading(false);
+        alert("Lognin failed. Please the credentials");
+        console.log("login error", error);
+      }
+    }
+  };
   return (
     <ScrollView style={styles.container}>
-      <ImageBackground source={welcome} style={styles.bgImg}> 
+      <ImageBackground source={welcome} style={styles.bgImg}>
         <View style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", height: "100%" }}>
           <View style={styles.loginHeader}>
             <Image
@@ -43,12 +72,13 @@ const Login = ({ navigation }) => {
           </View>
         </View>
       </ImageBackground>
-      <KeyboardAvoidingView behavior="padding" style={styles.credentialBox}>
+      <View style={styles.credentialBox}>
         <TextInput
           placeholder="Username"
           style={styles.formInput}
           placeholderTextColor="lightgray"
           fontSize={16}
+          onChangeText={(text) => setUsername(text)}
         />
         <TextInput
           placeholder="Password"
@@ -56,20 +86,18 @@ const Login = ({ navigation }) => {
           style={styles.formInput}
           placeholderTextColor="lightgray"
           fontSize={16}
+          onChangeText={(text) => setPassword(text)}
         />
         <AntDesign
           name="questioncircle"
           size={20}
           color="lightgray"
           style={styles.questionmark}
-          onPress={() => navigation.navigate("ForgotPassword")}
         />
-        <Text style={styles.formbtn}>Login</Text>
-        <TouchableOpacity onPress={()=>navigation.navigate("ForgotPassword")}>
-        <Text style={styles.forgetText}>Forget Password</Text>
-        </TouchableOpacity>
-        <View style={{height: 100}} />
-      </KeyboardAvoidingView>
+        <Text style={styles.formbtn} onPress={() => handleLogin()}>
+          Login
+        </Text>
+      </View>
       <View style={styles.bodyPoints}>
         <View style={styles.bodyPoint}>
           <AntDesign
@@ -153,7 +181,7 @@ const Login = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <Footer navigation={navigation} />
+      <Footer />
     </ScrollView>
   );
 };
@@ -185,12 +213,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#177409",
     color: "#fff",
     fontWeight: 900,
-  },
-  forgetText:{
-    paddingLeft:"65%",
-       paddingTop:20,
-       color:'green',
-       alignSelf:'flex-end'
   },
   headerBody: {
     alignItems: "center",

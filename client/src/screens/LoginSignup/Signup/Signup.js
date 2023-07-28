@@ -11,16 +11,50 @@ import { CheckBox } from "react-native-elements";
 import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
 import Footer from "../../../components/Footer";
+import { APP_BACKEND_URL } from "@env";
+import axios from "axios";
 
 const Signup = ({ navigation }) => {
-  const [selectedGender, setSelectedGender] = useState(""); // State to store the selected gender
+  const [gender, setGender] = useState(""); // State to store the selected gender
   const [isChecked, setIsChecked] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const toggleCheckbox = () => {
     setIsChecked(!isChecked);
   };
-  const handleGenderChange = (itemValue) => {
-    setSelectedGender(itemValue);
+  const handleSignup = async () => {
+    if (
+      username == "" ||
+      password == "" ||
+      confirmPassword == "" ||
+      gender == "" ||
+      email == ""
+    ) {
+      alert("Please enter all details");
+    }
+    if (password !== confirmPassword) {
+      alert("passwords do not match");
+    } else {
+      setLoading(true);
+      try {
+        const response = await axios.post(`${APP_BACKEND_URL}/register`, {
+          username,
+          email,
+          password,
+          gender,
+        });
+        setLoading(false);
+        navigation.navigate("Login");
+      } catch (error) {
+        setLoading(false);
+        alert("Lognin failed. Please the credentials");
+        console.log("login error", error);
+      }
+    }
   };
   return (
     <ScrollView style={styles.container}>
@@ -45,12 +79,14 @@ const Signup = ({ navigation }) => {
           style={styles.formInput}
           placeholderTextColor="lightgray"
           fontSize={16}
+          onChangeText={(text) => setUsername(text)}
         />
         <TextInput
           placeholder="E-mail address"
           style={styles.formInput}
           placeholderTextColor="lightgray"
           fontSize={16}
+          onChangeText={(text) => setEmail(text)}
         />
         <TextInput
           placeholder="Password"
@@ -58,6 +94,7 @@ const Signup = ({ navigation }) => {
           style={styles.formInput}
           placeholderTextColor="lightgray"
           fontSize={16}
+          onChangeText={(text) => setPassword(text)}
         />
         <TextInput
           placeholder="Confirm Password"
@@ -65,11 +102,12 @@ const Signup = ({ navigation }) => {
           style={styles.formInput}
           placeholderTextColor="lightgray"
           fontSize={16}
+          onChangeText={(text) => setConfirmPassword(text)}
         />
         <View style={styles.pickerWrapper}>
           <Picker
-            selectedValue={selectedGender}
-            onValueChange={handleGenderChange}
+            selectedValue={gender}
+            onValueChange={(itemValue) => setGender(itemValue)}
             prompt="Gender"
             style={styles.picker}
           >
@@ -91,7 +129,10 @@ const Signup = ({ navigation }) => {
           </Text>
         </View>
         <TouchableOpacity disabled={!isChecked}>
-          <Text style={isChecked ? styles.formbtn : styles.formbtndisable}>
+          <Text
+            style={isChecked ? styles.formbtn : styles.formbtndisable}
+            onPress={() => handleSignup()}
+          >
             Sign Up
           </Text>
         </TouchableOpacity>

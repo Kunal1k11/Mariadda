@@ -2,12 +2,15 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import Header from "../../components/MainPage/Header";
 import Body from "../../components/MainPage/Body";
+import BottomNav from "../../components/BottomNav";
 
-const MainPage = ({navigation}) => {
+const MainPage = ({ navigation, route}) => {
+  
   return (
     <View style={styles.container}>
       <Header navigation={navigation} />
       <Body navigation={navigation} />
+      <BottomNav navigation={navigation} page={"MainPage"} />
     </View>
   );
 };

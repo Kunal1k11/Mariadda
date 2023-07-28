@@ -4,10 +4,10 @@ import user from "../../../assets/images/user.jpeg";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
-const PostUpload = () => {
+const PostUpload = ({user}) => {
   return (
     <View style={styles.uploadPost}>
-      <Image source={user} style={styles.postImage} />
+      <Image source={{ uri: user?.picture }} style={styles.postImage} />
       <Text style={styles.uploadText}>What's going on?</Text>
       <View style={styles.uploadIcons}>
         <MaterialCommunityIcons
