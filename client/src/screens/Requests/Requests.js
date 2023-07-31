@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import BottomNav from "../../components/BottomNav";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 const Requests = ({ navigation }) => {
   return (
@@ -10,13 +10,15 @@ const Requests = ({ navigation }) => {
         <Text style={styles.requestHeader}>Requests</Text>
         <View style={styles.requests}>
           <View style={styles.noRequests}>
-            <Ionicons
-              name="ios-person-sharp"
-              size={24}
+            <AntDesign
+              name="deleteuser"
+              size={30}
               color="#e134eb"
               style={styles.personIcon}
             />
-            <Text style={styles.noRequestText}>You do not have any requests</Text>
+            <Text style={styles.noRequestText}>
+              You do not have any requests
+            </Text>
           </View>
         </View>
       </View>
@@ -48,17 +50,18 @@ const styles = StyleSheet.create({
   noRequests: {
     width: "100%",
     alignItems: "center",
-    marginTop: 50,
+    marginTop: 50
   },
   personIcon: {
-    backgroundColor: "#f5cdf7",
+    backgroundColor: "#fcedfa",
     padding: 20,
-    borderRadius: 50
+    borderRadius: 50,
+    fontWeight: 600
   },
   noRequestText: {
     color: "white",
     fontSize: 20,
     fontWeight: 600,
-    marginTop: 10,
+    marginTop: 10
   }
 });

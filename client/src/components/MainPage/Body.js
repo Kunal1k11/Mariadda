@@ -1,14 +1,25 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Entypo } from "@expo/vector-icons";
 import Stories from "./Stories";
 import Tags from "./Tags";
 import PostUpload from "../Post/PostUpload";
 import Posts from "../Post/Posts";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { APP_BACKEND_URL } from "@env";
 
-const Body = () => {
+const Body = ({ navigation }) => {
   const userData = useSelector((state) => state.user.userData);
+  const [posts, setPosts] = useState([]);
+  const loadData = async () => {
+    const response = await axios.get(`${APP_BACKEND_URL}/getAllPosts`);
+    setPosts(response.data);
+  };
+  console.log("post", posts);
+  useEffect(() => {
+    loadData();
+  }, []);
   const getGreeting = () => {
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
@@ -26,7 +37,7 @@ const Body = () => {
   const greetingStyles = {
     "Good morning": styles.morningGreeting,
     "Good afternoon": styles.afternoonGreeting,
-    "Good evening": styles.eveningGreeting,
+    "Good evening": styles.eveningGreeting
   };
 
   // Get the current greeting
@@ -42,8 +53,14 @@ const Body = () => {
       </View>
       <Stories user={userData} />
       <Tags />
-      <PostUpload user={userData} />
-      <Posts />
+      <PostUpload user={userData} navigation={navigation} page={"MainPage"} />
+      <View style={styles.posts}>
+        {posts?.map((post) => (
+          <View key={post._id} style={styles.post}>
+            <Posts post={post} />
+          </View>
+        ))}
+      </View>
     </ScrollView>
   );
 };
@@ -54,7 +71,7 @@ const styles = StyleSheet.create({
   body: {
     width: "100%",
     height: "100%",
-    backgroundColor: "#232324",
+    backgroundColor: "#232324"
   },
   greeting: {
     flexDirection: "row",
@@ -62,19 +79,26 @@ const styles = StyleSheet.create({
     width: "95%",
     justifyContent: "space-around",
     marginLeft: 10,
-    marginTop: 20,
+    marginTop: 20
   },
   greetingText: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
   morningGreeting: {
-    color: "green",
+    color: "green"
   },
   afternoonGreeting: {
-    color: "blue",
+    color: "blue"
   },
   eveningGreeting: {
-    color: "orange",
+    color: "orange"
   },
+  post: {
+    marginBottom: 10,
+    marginTop: 20
+  },
+  posts: {
+    marginBottom: 70
+  }
 });

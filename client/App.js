@@ -13,6 +13,8 @@ import Notifications from "./src/screens/Notifications/Notifications";
 import NavProfileMenu from "./src/screens/Menus/NavProfileMenu";
 import HeaderNavMenu from "./src/screens/Menus/HeaderNavMenu";
 import MyProfile from './src/screens/Profile/MyProfile'
+import UploadPost from "./src/screens/Post/UploadPost";
+import ForgotPassword from './src/screens/LoginSignup/ForgotPassword/ForgotPassword'
 const Stack = createNativeStackNavigator();
 
 const RootNavigation = () => {
@@ -33,6 +35,8 @@ const RootNavigation = () => {
          <Stack.Screen name="HeaderNavMenu" component={HeaderNavMenu} />
          <Stack.Screen name="NavProfileMenu" component={NavProfileMenu} />
          <Stack.Screen name="MyProfile" component={MyProfile} />
+         <Stack.Screen name="UploadPost" component={UploadPost} />
+         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
        </Stack.Navigator>
      </NavigationContainer>
    );

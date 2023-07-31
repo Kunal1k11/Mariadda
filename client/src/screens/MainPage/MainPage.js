@@ -10,7 +10,7 @@ const MainPage = ({ navigation, route}) => {
     <View style={styles.container}>
       <Header navigation={navigation} />
       <Body navigation={navigation} />
-      <BottomNav navigation={navigation} page={"MainPage"} />
+      <BottomNav navigation={navigation} page={"MainPage"}  />
     </View>
   );
 };

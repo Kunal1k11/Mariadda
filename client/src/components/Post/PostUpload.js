@@ -1,14 +1,27 @@
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from "react-native";
 import React from "react";
-import user from "../../../assets/images/user.jpeg";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
-const PostUpload = ({user}) => {
+const PostUpload = ({ user, navigation, page }) => {
   return (
     <View style={styles.uploadPost}>
-      <Image source={{ uri: user?.picture }} style={styles.postImage} />
-      <Text style={styles.uploadText}>What's going on?</Text>
+      <TouchableOpacity onPress={() =>navigation.navigate("MyProfile")}>
+        <Image source={{ uri: user?.picture }} style={styles.postImage} />
+      </TouchableOpacity>
+      <Text
+        style={styles.uploadText}
+        onPress={() => navigation.navigate("UploadPost", { page })}
+      >
+        What's going on?
+      </Text>
       <View style={styles.uploadIcons}>
         <MaterialCommunityIcons
           name="video-account"
@@ -36,13 +49,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     marginTop: -17,
+    paddingLeft: 10
   },
   postImage: {
-    height: 50,
-    width: 50,
+    height: 45,
+    width: 45,
     borderRadius: 50,
     marginLeft: 10,
-    resizeMode: "cover",
+    resizeMode: "cover"
   },
   uploadText: {
     color: "#fff",
@@ -51,21 +65,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
     borderRadius: 10,
     backgroundColor: "#3f3f40",
-    marginLeft: 18,
+    marginLeft: 18
   },
   uploadIcons: {
     marginHorizontal: 10,
-    flexDirection: "row",
+    flexDirection: "row"
   },
   video: {
     backgroundColor: "rgba(255,0,0,0.3)",
     padding: 8,
-    borderRadius: 30,
+    borderRadius: 30
   },
   camera: {
     backgroundColor: "rgba(0,255,0,0.2)",
     padding: 8,
     borderRadius: 30,
-    marginLeft: 10,
-  },
+    marginLeft: 10
+  }
 });

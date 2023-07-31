@@ -6,9 +6,9 @@ import { useSelector } from "react-redux";
 
 const BottomNav = ({ navigation, page }) => {
   const userData = useSelector((state) => state.user.userData);
-  //   console.log(userData.picture);
+  // console.log(userData);
   return (
-    <View    iew style={styles.container}>
+    <View iew style={styles.container}>
       {page === "MainPage" ? (
         <Entypo
           name="home"
@@ -90,11 +90,11 @@ const styles = StyleSheet.create({
     zIndex: 100,
     borderTopWidth: 2,
     borderColor: "#3a3b3a",
-    paddingVertical: 10,
+    paddingVertical: 10
   },
   picture: {
     width: 30,
     height: 30,
-    borderRadius: 50,
-  },
+    borderRadius: 50
+  }
 });

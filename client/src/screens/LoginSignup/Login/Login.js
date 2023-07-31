@@ -54,7 +54,7 @@ const Login = ({ navigation }) => {
             <Image
               style={styles.logo}
               source={{
-                uri: "https://www.mariadda.com/themes/wondertag/img/logo.png",
+                uri: "https://www.mariadda.com/themes/wondertag/img/logo.png"
               }}
             />
             <Text
@@ -93,6 +93,7 @@ const Login = ({ navigation }) => {
           size={20}
           color="lightgray"
           style={styles.questionmark}
+          onPress={() => navigation.navigate("ForgotPassword")}
         />
         <Text style={styles.formbtn} onPress={() => handleLogin()}>
           Login
